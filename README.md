@@ -12,7 +12,7 @@ Features
 - Secure User Authentication (Sign Up / Log In)
 
   Technology Stack
-Frontend: React.js / Vue.js / HTML, CSS, JavaScript
-Backend: PHP & MySQL
-Version Control: Git & GitHub
-Project Management: Jira
+- Frontend: React.js / Vue.js / HTML, CSS, JavaScript
+- Backend: PHP & MySQL
+- Version Control: Git & GitHub
+- Project Management: Jira
