@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRIFT | Car</title>
+ 
+  <link rel="stylesheet" href="ProductStyle.css" />
+  <link rel="stylesheet" href="home css/styles.css">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" class="favicon">
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="home.html" class="nav__logo">
+                <i class="ri-steering-fill"></i>
+                Drift
+            </a>
+      
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="home.html" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="NewCar.html" class="nav__link">New Cars</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="UsedCar.html" class="nav__link">Used Cars</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="ListOfCars.html" class="nav__link ">Customize</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="Compare.html" class="nav__link">Compare</a>
+                    </li>
+                </ul>
+      
+               
+                <div class="nav__search">
+                    <input type="text" placeholder="Search cars..." class="search__input">
+                    <button class="search__button">
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
+    
+                <!-- Sign Up / Log In Button -->
+                <a href="signup.html" class="auth__link">Sign Up / Log In</a>
+      
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+      
+            <!-- Toggler Button -->
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </nav>
+    </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Overview Section -->
+    <div class="info-wrapper">
+      <div class="car-info">
+        <div class="info-title">Overview</div>
+        <p class="description">
+          The Boxster 987 is not just a car; it’s a statement. With its sleek matte black exterior and powerful V6 engine, it commands attention on any road. The charcoal leather interior offers unparalleled comfort, making every drive a luxurious experience.
+        </p>
+      </div>
+      <!-- Place Order Button -->
+      <button class="place-order">Place Order</button>
+    </div>
+
+    <!-- Carousel Section -->
+    <div class="car-display">
+      <div class="carousel">
+        <img class="carousel-image active" src="ProcutImages/car1.png" alt="Car 1">
+        <img class="carousel-image" src="ProcutImages/Seat.jpg" alt="Car 2">
+        <img class="carousel-image" src="ProcutImages/inside.jpg" alt="Car 3">
+      </div>
+      <div class="carousel-nav">
+        <button class="nav-btn active" onclick="changeImage(0)">
+          <img class="thumbnail" src="ProcutImages/car1.png" alt="Exterior view">
+        </button>
+        <button class="nav-btn" onclick="changeImage(1)">
+          <img class="thumbnail" src="ProcutImages/Seat.jpg" alt="Interior details">
+        </button>
+        <button class="nav-btn" onclick="changeImage(2)">
+          <img class="thumbnail" src="ProcutImages/inside.jpg" alt="Dashboard view">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vehicle Highlights Section -->
+  <section class="vehicle-highlights-section">
+    <div class="highlights-container">
+      <!-- Vehicle Highlights Details -->
+      <div class="highlights-details">
+        <h2>Vehicle Highlights</h2>
+        <div class="price-banner">
+          Price: SR79,000
+        </div>
+        <div class="highlights-grid">
+          <div class="highlight-item">
+            <span class="highlight-label">Year</span>
+            <span class="highlight-value">2023</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Condition</span>
+            <span class="highlight-value">New</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Gear</span>
+            <span class="highlight-value">Automatic</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Interior</span>
+            <span class="highlight-value">Charcoal Leather</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Exterior</span>
+            <span class="highlight-value">Matte Black</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Engine</span>
+            <span class="highlight-value">V6, 380 HP</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Fuel</span>
+            <span class="highlight-value">25 MPG</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Brand</span>
+            <span class="highlight-value">Porsche</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Speed</span>
+            <span class="highlight-value">350 km/h</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label">Model</span>
+            <span class="highlight-value">Boxster 987</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="highlights-image">
+        <img src="ProcutImages/CarFromFront.png" alt="Car for highlights">
+      </div>
+    </div>
+  </section>
+
+  
+    <!--==================== FOOTER ====================-->
+    <footer class="footer section">
+      <div class="shapeX shape__big"></div>
+      <div class="shapeX shape__small"></div>
+
+      <div class="footer__container container grid">
+          <div class="footer__content">
+              <a href="#" class="footer__logo">
+                  <i class="ri-steering-line"></i>
+                 Drift
+              </a>
+              <p class="footer__description">
+                  We offer the best cars of <br>
+                  the most recognized brands in <br>
+                  the world.
+              </p>
+          </div>
+
+
+          <div class="footer__content">
+
+              <h3 class="footer__title">Company </h3>
+
+              <ul class="footer__links">
+                  <li>
+                      <a href="#" class="footer__links">About</a>
+                  </li>
+                  <li>
+                      <a href="#" class="footer__links">Cars</a>
+                  </li>
+              
+                  <li>
+                      <a href="#" class="footer__links"></a>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title">Information </h3>
+              <ul class="footer__links">
+            
+                      <a href="#" class="footer__links">Contact us</a>
+                  </li>
+                
+              </ul>
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title"> Follow us </h3>
+
+              <ul class="footer__social">
+                  <a href="" target="_blank" class="footer__social-link">
+                      <i class="ri-facebook-fill"></i>
+                  </a>
+                  <a href="" target="_blank" class="footer__social-link">
+                      <i class="ri-instagram-line"></i>
+                  </a>
+                  <a href="" target="_blank" class="footer__social-link">
+                      <i class="ri-twitter-line"></i>
+                  </a>
+              </ul>
+          </div>
+      </div>
+      <span class="footer__copy">
+          &#169; <a target="_blank" href="Layan.aln" class="footer__dev-link">Drift</a> All rigths
+          reserved
+          <p id="date"></p>
+      </span>
+  </footer>
+
+
+  <script src="ProductScript.js"></script>
+</body>
+</html>

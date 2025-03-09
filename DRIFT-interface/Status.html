@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+      <link rel="stylesheet" href="home css/styles.css">
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" class="favicon">
+
+      <!--=============== REMIX ICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <title>Drift | Premium Car Sales</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+      :root {
+        --drift-black: #0a0a0a;
+        --drift-white: #ffffff;
+        --drift-gray-dark: #2e2e2e;
+        --drift-gray-medium: #707070;
+        --drift-gray-light: #c0c0c0;
+        --drift-max-width: 1200px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .drift-section__container {
+        max-width: var(--drift-max-width);
+        margin: auto;
+        padding: 5rem 1rem;
+      }
+
+      .drift-section__header {
+        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--drift-white);
+        line-height: 3.25rem;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+
+      .drift-section__description {
+        color: var(--drift-gray-medium);
+        text-align: center;
+        line-height: 1.5rem;
+      }
+
+      .drift-btn {
+        padding: 0.75rem 1.5rem;
+        outline: none;
+        border: 2px solid var(--drift-gray-light);
+        font-size: 1rem;
+        color: var(--drift-gray-light);
+        background: transparent;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .drift-btn:hover {
+        background: var(--drift-gray-light);
+        color: var(--drift-black);
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+      }
+
+      .drift-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s ease, height 0.4s ease;
+      }
+
+      .drift-btn:hover::before {
+        width: 200px;
+        height: 200px;
+      }
+
+      .drift-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .drift-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      img {
+        display: flex;
+        width: 100%;
+      }
+
+      a {
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      html,
+      body {
+        scroll-behavior: smooth;
+        padding-top: 5rem;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background: var(--drift-black);
+      }
+
+      .drift-header__container {
+        padding-top: 5rem;
+        display: grid;
+      }
+
+      .drift-header__image {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+      }
+
+      .drift-header__image::before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 5rem;
+        background: var(--drift-gray-dark);
+        opacity: 0.5;
+        border-top-left-radius: 2rem;
+        z-index: -1;
+      }
+
+      .drift-header__content {
+        padding-block: 2rem 5rem;
+        padding-inline: 1rem;
+      }
+
+      .drift-header__content h2 {
+        width: fit-content;
+        margin-inline: auto;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--drift-white);
+        background: var(--drift-gray-dark);
+        border-radius: 5rem;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+
+      .drift-header__content h1 {
+        margin-bottom: 2rem;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--drift-white);
+        text-align: center;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+      }
+
+      .drift-header__form form {
+        max-width: 900px;
+        margin-inline: auto;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        background: var(--drift-gray-dark);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        border-radius: 1rem;
+      }
+
+      .drift-header__form .drift-input__group {
+        flex: 1 0 170px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .drift-header__form label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--drift-gray-light);
+      }
+
+      .drift-header__form input {
+        width: 100%;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        color: var(--drift-gray-light);
+        background: transparent;
+      }
+
+      .drift-header__form input::placeholder {
+        color: var(--drift-gray-medium);
+      }
+
+      .drift-header__form select {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        color: var(--drift-gray-light);
+        background: var(--drift-gray-dark);
+        border: 1px solid var(--drift-gray-light);
+        border-radius: 0.5rem;
+        appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%23c0c0c0' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+      }
+
+      .drift-header__form select:focus {
+        outline: none;
+        border-color: var(--drift-white);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      }
+
+      .drift-header__form .drift-btn {
+        padding: 15px 17px;
+      }
+
+      .drift-about__container .drift-section__description {
+        max-width: 600px;
+        margin-inline: auto;
+        margin-bottom: 4rem;
+      }
+
+      .drift-about__grid {
+        display: grid;
+        gap: 2rem 1rem;
+        justify-content: center; /* Ensure grid is centered */
+      }
+
+      .drift-about__card {
+        max-width: 300px;
+        margin-inline: auto;
+        text-align: center;
+        background: var(--drift-gray-dark);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .drift-about__card span {
+        display: inline-block;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        padding: 16px 20px;
+        border-radius: 1.25rem;
+        color: var(--drift-white);
+        background: var(--drift-gray-medium);
+      }
+
+      .drift-about__card h4 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--drift-white);
+      }
+
+      .drift-about__card p {
+        color: var(--drift-gray-medium);
+        line-height: 1.5rem;
+      }
+
+      .drift-about__card label {
+        display: block;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--drift-white);
+      }
+
+      .drift-about__card input,
+      .drift-about__card select {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        background: var(--drift-gray-medium);
+        border: none;
+        border-radius: 0.5rem;
+        color: var(--drift-white);
+      }
+
+      .drift-about__card input[type="text"],
+      .drift-about__card select {
+        font-size: 1rem;
+      }
+
+      .drift-about__card input[type="date"] {
+        font-size: 1rem;
+        color: var(--drift-gray-light);
+      }
+
+      .drift-about__card input::placeholder,
+      .drift-about__card select option {
+        color: var(--drift-white);
+      }
+
+      .drift-footer {
+        background: var(--drift-gray-dark);
+      }
+
+      .drift-footer__container {
+        display: grid;
+        gap: 4rem 2rem;
+      }
+
+      .drift-footer__logo {
+        margin-bottom: 2rem;
+      }
+
+      .drift-footer__logo img {
+        max-width: 45px;
+      }
+
+      .drift-footer__logo span {
+        font-size: 1.5rem;
+        color: var(--drift-white);
+      }
+
+      .drift-footer__col p {
+        margin-bottom: 2rem;
+        color: var(--drift-gray-light);
+        line-height: 1.5rem;
+      }
+
+      .drift-footer__socials {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .drift-footer__socials a {
+        padding: 6px 8px;
+        font-size: 1.125rem;
+        color: var(--drift-gray-dark);
+        background: var(--drift-white);
+        border-radius: 100%;
+      }
+
+      .drift-footer__socials a:hover {
+        color: var(--drift-white);
+        background: var(--drift-gray-medium);
+      }
+
+      .drift-footer__col h4 {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--drift-white);
+      }
+
+      .drift-footer__links {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .drift-footer__links a {
+        color: var(--drift-gray-light);
+      }
+
+      .drift-footer__links a:hover {
+        color: var(--drift-white);
+      }
+
+      .drift-footer__links span {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 4px 6px;
+        border: 1px solid var(--drift-gray-light);
+        border-radius: 100%;
+      }
+
+      .drift-footer__links a:hover span {
+        border-color: var(--drift-white);
+      }
+
+      .drift-footer__bar {
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: var(--drift-gray-light);
+        text-align: center;
+      }
+
+      @media (width > 540px) {
+        .drift-about__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (width > 768px) {
+        .drift-header__container {
+          padding-top: 0;
+          grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, calc(var(--drift-max-width) / 2))
+            minmax(0, calc(var(--drift-max-width) / 2))
+            minmax(0, 1fr);
+        }
+
+        .drift-header__image {
+          grid-area: 1/3/2/5;
+          height: 100%;
+        }
+
+        .drift-header__image img {
+          padding-bottom: 5rem;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          width: unset;
+          height: 100%;
+        }
+
+        .drift-header__content {
+          padding-block: 2rem 10rem;
+          grid-area: 1/2/2/3;
+        }
+
+        .drift-header__content h2 {
+          margin-inline-start: unset;
+        }
+
+        .drift-header__content :is(h1, .drift-section__description) {
+          text-align: left;
+        }
+
+        .drift-header__form form {
+          padding: 1.5rem;
+          transform: translateY(-50%);
+        }
+
+        .drift-about__container {
+          padding-top: 3rem;
+        }
+
+        .drift-about__grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .drift-line-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        height: 12px;
+        margin: 1rem auto;
+        background: linear-gradient(90deg, var(--drift-gray-dark), var(--drift-gray-medium));
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--drift-gray-light);
+      }
+
+      .drift-line {
+        position: absolute;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--drift-gray-light), #a0a0ff);
+        border-radius: 6px;
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+        animation: drift-moveLine 10s linear forwards; /* 10 seconds */
+        transition: width 0.1s ease-out;
+      }
+
+      @keyframes drift-moveLine {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="home.html" class="nav__logo">
+                <i class="ri-steering-fill"></i>
+                Drift
+            </a>
+      
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="home.html" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="NewCar.html" class="nav__link">New Cars</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="UsedCar.html" class="nav__link">Used Cars</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="ListOfCars.html" class="nav__link ">Customize</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="Compare.html" class="nav__link">Compare</a>
+                    </li>
+                </ul>
+      
+               
+                <div class="nav__search">
+                    <input type="text" placeholder="Search cars..." class="search__input">
+                    <button class="search__button">
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
+    
+                <!-- Sign Up / Log In Button -->
+                <a href="signup.html" class="auth__link">Sign Up / Log In</a>
+      
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+      
+            <!-- Toggler Button -->
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </nav>
+    </header>
+    <div class="drift-header__container" id="drift-home">
+      <div class="drift-header__image">
+        <img src="home img/offer.png" alt="Porsche 911 Carrera 4S" />
+      </div>
+      <div class="drift-header__content">
+        <h1>Porsche 911 Carrera 4S</h1>
+        <p class="drift-section__description">
+          Thank you for your interest!<br /> The process is still in progress, and we kindly ask you to wait until the timeline is fully completed before proceeding. Once it’s done, you will be able to continue with the necessary steps.
+        </p>
+      </div>
+    </div>
+
+    <section class="drift-header__form">
+      <form action="/">
+        <div class="drift-input__group">
+          <label for="drift-engine">Engine</label>
+          <input
+            type="text"
+            name="drift-engine"
+            id="drift-engine"
+            placeholder="3.0L Twin-Turbocharged Flat-6"
+          />
+        </div>
+        <div class="drift-input__group">
+          <label for="drift-speed">Speed</label>
+          <input
+            type="text"
+            name="drift-speed"
+            id="drift-speed"
+            placeholder="191 mph (307 km/h)"
+          />
+        </div>
+        <div class="drift-input__group">
+          <label for="drift-price">Price</label>
+          <input
+            type="text"
+            name="drift-price"
+            id="drift-price"
+            placeholder="$130,000"
+          />
+        </div>
+    <button class="drift-btn" id="drift-buyBtn" disabled>Pay Now</button>
+      </form>
+    </section>
+
+    <div class="drift-line-container">
+      <div class="drift-line" id="drift-timerLine"></div>
+    </div>
+
+    <section class="drift-section__container drift-about__container" id="drift-about">
+      <h2 class="drift-section__header">Delivery Details</h2>
+      <div class="drift-about__grid">
+        <div class="drift-about__card">
+          <span><i class="ri-map-pin-2-fill"></i></span>
+          <h4>Delivery Address</h4>
+          <label for="drift-city">City:</label>
+          <select id="drift-city" name="drift-city" disabled>
+            <option value="Riyadh">Riyadh</option>
+            <option value="Jeddah">Jeddah</option>
+            <option value="Dammam">Dammam</option>
+            <option value="Makkah">Makkah</option>
+            <option value="Medina">Medina</option>
+            <option value="Taif">Taif</option>
+            <option value="Khobar">Khobar</option>
+            <option value="Jubail">Jubail</option>
+            <option value="Abha">Abha</option>
+            <option value="Hail">Hail</option>
+          </select>
+          <label for="drift-street">Street:</label>
+          <input type="text" id="drift-street" placeholder="Enter street name" disabled />
+          <label for="drift-neighborhood">Neighborhood:</label>
+          <input type="text" id="drift-neighborhood" placeholder="Enter neighborhood" disabled />
+        </div>
+        <div class="drift-about__card">
+          <span><i class="ri-calendar-event-fill"></i></span>
+          <h4>Delivery Date</h4>
+          <p>Choose your preferred delivery date</p>
+          <input type="date" id="drift-dateInput" name="drift-date" disabled />
+        </div>
+        <div class="drift-about__card">
+          <span><i class="ri-roadster-fill"></i></span>
+          <h4>Cancel Order</h4>
+          <p>Are you sure?</p>
+          <p>Canceling will remove your order permanently.</p>
+          <button class="drift-btn" id="drift-cancelOrderBtn" style="margin-top: 1rem;" >Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer section">
+      <div class="shapeX shape__big"></div>
+      <div class="shapeX shape__small"></div>
+
+      <div class="footer__container container grid">
+          <div class="footer__content">
+              <a href="#" class="footer__logo">
+                  <i class="ri-steering-line"></i>
+                 Drift
+              </a>
+              <p class="footer__description">
+                  We offer the best cars of <br>
+                  the most recognized brands in <br>
+                  the world.
+              </p>
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title">Company </h3>
+              <ul class="footer__links">
+                  <li>
+                      <a href="#" class="footer__links">About</a>
+                  </li>
+                  <li>
+                      <a href="#" class="footer__links">Cars</a>
+                  </li>
+                  <li>
+                      <a href="#" class="footer__links"></a>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title">Information </h3>
+              <ul class="footer__links">
+                  <li>
+                      <a href="#" class="footer__links">Contact us</a>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title"> Follow us </h3>
+              <ul class="footer__social">
+                  <a href="" target="_blank" class="footer__social-link">
+                      <i class="ri-facebook-fill"></i>
+                  </a>
+                  <a href="" target="_blank" class="footer__social-link">
+                      <i class="ri-instagram-line"></i>
+                  </a>
+                  <a href="" target="_blank" class="footer__social-link">
+                      <i class="ri-twitter-line"></i>
+                  </a>
+              </ul>
+          </div>
+      </div>
+      <span class="footer__copy">
+          © <a target="_blank" href="Layan.aln" class="footer__dev-link">Drift</a> All rights reserved
+          <p id="date"></p>
+      </span>
+    </footer>
+
+<script>
+let isPaymentConfirmed = false;
+let isTimerExpired = false;
+let isOrderCanceled = false; // Track if the order has been canceled
+
+// Initialize the 10-second timer when the page loads
+window.onload = function () {
+  // Set timer to 10 seconds
+  setTimeout(() => {
+    isTimerExpired = true;
+    const buyBtn = document.getElementById("drift-buyBtn");
+    const cancelBtn = document.getElementById("drift-cancelOrderBtn");
+    buyBtn.disabled = false; // Enable Buy Now button after timer
+    if (!isOrderCanceled) {
+      cancelBtn.disabled = true; // Disable Cancel button after timer, unless already canceled
+    }
+  }, 10000); // 10 seconds in milliseconds
+
+  // Start the timer line animation for 10 seconds
+  const timerLine = document.getElementById("drift-timerLine");
+  timerLine.style.animation = "drift-moveLine 10s linear forwards";
+};
+
+// Handle Buy Now button click
+document.getElementById("drift-buyBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  const engine = document.getElementById("drift-engine").value || "3.0L Twin-Turbocharged Flat-6";
+  const speed = document.getElementById("drift-speed").value || "191 mph (307 km/h)";
+  const price = document.getElementById("drift-price").value || "$130,000";
+
+  if (engine && speed && price) {
+    isPaymentConfirmed = true;
+    alert(`Purchase confirmed for ${engine}, ${speed}, ${price}. You can now edit delivery details.`);
+
+    // Enable delivery details fields
+    document.getElementById("drift-city").disabled = false;
+    document.getElementById("drift-street").disabled = false;
+    document.getElementById("drift-neighborhood").disabled = false;
+    document.getElementById("drift-dateInput").disabled = false;
+
+    // Only enable Cancel button if order hasn't been canceled
+    if (!isOrderCanceled) {
+      document.getElementById("drift-cancelOrderBtn").disabled = false;
+    }
+
+    // Disable Buy Now button after purchase
+    document.getElementById("drift-buyBtn").disabled = true;
+  } else {
+    alert("Please fill in all fields before confirming your purchase.");
+  }
+});
+
+// Handle Cancel Order button click
+document.getElementById("drift-cancelOrderBtn").addEventListener("click", () => {
+  if (isTimerExpired) {
+    alert("Cannot cancel, the 10-second window has expired.");
+    return; // Exit if timer has expired
+  }
+
+  if (isPaymentConfirmed) {
+    alert("Cannot cancel, order is already processed.");
+    return; // Exit if purchase is confirmed
+  }
+
+  if (isOrderCanceled) {
+    alert("Order has already been canceled.");
+    return; // Exit if order was previously canceled
+  }
+
+  // If neither timer expired nor purchase confirmed, allow cancellation
+  if (confirm("Are you sure you want to cancel your order? This action cannot be undone.")) {
+    isOrderCanceled = true; // Mark the order as canceled
+    const cancelBtn = document.getElementById("drift-cancelOrderBtn");
+    cancelBtn.disabled = true; // Disable the Cancel button permanently
+    alert("Order canceled. You will be redirected to the home page.");
+    // Redirect to home page
+    window.location.href = "home.html";
+  }
+});
+</script>
+  </body>
+</html>

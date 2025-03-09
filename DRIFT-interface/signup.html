@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="SignupStyle.css">
+    <link rel="stylesheet" href="home css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" class="favicon">
+
+    <title>Drift | Sign Up / Log In</title>
+</head>
+<body>
+    <a href="home.html" class="nav__logo">
+        <i class="ri-steering-fill"></i>
+        Drift
+    </a>
+    <div class="container" id="container">
+        <!-- Sign Up Form -->
+        <div class="form-container sign-up">
+            <form id="signup-form">
+                <h1>Create Account</h1>
+                <input type="text" id="name" placeholder="Name" required>
+                <span class="error-message" id="name-error"></span>
+
+                <input type="email" id="email" placeholder="Email" required>
+                <span class="error-message" id="email-error"></span>
+
+                <input type="text" id="phone" placeholder="Phone Number" required>
+                <span class="error-message" id="phone-error"></span>
+
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="error-message" id="password-error"></span>
+
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Sign In Form -->
+        <div class="form-container sign-in">
+            <form id="signin-form">
+                <h1>Sign In</h1>
+                <input type="email" id="signin-email" placeholder="Email" required>
+                <span class="error-message" id="signin-email-error"></span>
+
+                <input type="password" id="signin-password" placeholder="Password" required>
+                <span class="error-message" id="signin-password-error"></span>
+
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Toggle Container -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="SignupScript.js"></script>
+</body>
+</html>  

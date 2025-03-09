@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <link rel="stylesheet" href="home css/styles.css">
+
+    <title>Car Comparison</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+		
+      }
+body {
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #b0b0b0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Allow children to stretch to full width */
+    position: relative;
+    padding-top: 10rem;
+	
+}
+
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(80, 80, 80, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            animation: pulse 8s infinite;
+            z-index: 0;
+            opacity: 0.4;
+        }
+h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #606060, #d0d0d0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(208, 208, 208, 0.5);
+    margin-bottom: 40px;
+    animation: glow 2s ease-in-out infinite alternate;
+    z-index: 1;
+    letter-spacing: 2px;
+}
+
+        .comparison-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 1500px;
+            z-index: 1;
+            gap: 40px;
+			 flex-grow: 1;
+        }
+
+        .car {
+            position: relative;
+            width: 48%;
+            padding: 30px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(60, 60, 60, 0.6);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .car:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+        }
+
+        .car img {
+            width: 80%;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.8));
+            transition: transform 0.5s ease, filter 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .car:hover img {
+            transform: scale(1.08);
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.9)) brightness(1.1);
+        }
+
+        .car-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #d0d0d0;
+            text-shadow: 0 0 10px rgba(208, 208, 208, 0.5);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(60, 60, 60, 0.5);
+            overflow: hidden;
+        }
+
+        .details-table th,
+        .details-table td {
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .details-table th {
+            color: #909090;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 5px rgba(144, 144, 144, 0.4);
+            background: rgba(30, 30, 30, 0.9);
+            border-bottom: 1px solid rgba(60, 60, 60, 0.6);
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .details-table td {
+            color: #d0d0d0;
+            border-bottom: 1px solid rgba(60, 60, 60, 0.3);
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .details-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .details-table tr:hover {
+            background: rgba(40, 40, 40, 0.7);
+            transform: scale(1.02);
+        }
+
+        /* Animation delays for each row */
+        .details-table tr:nth-child(1) th,
+        .details-table tr:nth-child(1) td { animation-delay: 0.2s; }
+        .details-table tr:nth-child(2) th,
+        .details-table tr:nth-child(2) td { animation-delay: 0.4s; }
+        .details-table tr:nth-child(3) th,
+        .details-table tr:nth-child(3) td { animation-delay: 0.6s; }
+        .details-table tr:nth-child(4) th,
+        .details-table tr:nth-child(4) td { animation-delay: 0.8s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(208, 208, 208, 0.5); }
+            to { text-shadow: 0 0 20px rgba(208, 208, 208, 0.7); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.03); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="home.html" class="nav__logo">
+                <i class="ri-steering-fill"></i>
+                Drift
+            </a>
+      
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="home.html" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="NewCar.html" class="nav__link">New Cars</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="UsedCar.html" class="nav__link">Used Cars</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="ListOfCars.html" class="nav__link ">Customize</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="Compare.html"class="nav__link active-link">Compare</a>
+                    </li>
+                </ul>
+      
+               
+                <div class="nav__search">
+                    <input type="text" placeholder="Search cars..." class="search__input">
+                    <button class="search__button">
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
+    
+                <!-- Sign Up / Log In Button -->
+                <a href="signup.html" class="auth__link">Sign Up / Log In</a>
+      
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+      
+            <!-- Toggler Button -->
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </nav>
+    </header>
+    <div class="particles"></div>
+ 
+    <div class="comparison-container">
+        <div class="car left">
+            <div class="car-title">Porsche 911 Turbo S</div>
+            <img src="img/featured4.png">
+            <table class="details-table">
+                <tr>
+                    <th>Engine</th>
+                    <td>3.8L Twin-Turbocharged Flat-6</td>
+                </tr>
+                <tr>
+                    <th>Speed</th>
+                    <td>205 mph (330 km/h)</td>
+                </tr>
+                <tr>
+                    <th>Year</th>
+                    <td> 2025</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td> $207,000</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="car right">
+            <div class="car-title">Porsche 911 Carrera 4S</div>
+            <img src="img/popular4.png">
+            <table class="details-table">
+                <tr>
+                    <th>Engine</th>
+                    <td>3.0L Twin-Turbocharged Flat-6</td>
+                </tr>
+                <tr>
+                    <th>Speed</th>
+                    <td>191 mph (307 km/h)</td>
+                </tr>
+                <tr>
+                    <th>Year</th>
+                    <td>2023</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>$130,000</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+        <footer class="footer section">
+        <div class="shapeX shape__big"></div>
+        <div class="shapeX shape__small"></div>
+
+        <div class="footer__container container grid">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">
+                    <i class="ri-steering-line"></i>
+                   Drift
+                </a>
+                <p class="footer__description">
+                    We offer the best cars of <br>
+                    the most recognized brands in <br>
+                    the world.
+                </p>
+            </div>
+
+
+            <div class="footer__content">
+
+                <h3 class="footer__title">Company </h3>
+
+                <ul class="footer__links">
+                    <li>
+                        <a href="#" class="footer__links">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__links">Cars</a>
+                    </li>
+                
+                    <li>
+                        <a href="#" class="footer__links"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Information </h3>
+                <ul class="footer__links">
+              
+                        <a href="#" class="footer__links">Contact us</a>
+                    </li>
+                  
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title"> Follow us </h3>
+
+                <ul class="footer__social">
+                    <a href="" target="_blank" class="footer__social-link">
+                        <i class="ri-facebook-fill"></i>
+                    </a>
+                    <a href="" target="_blank" class="footer__social-link">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="" target="_blank" class="footer__social-link">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <span class="footer__copy">
+            &#169; <a target="_blank" href="Layan.aln" class="footer__dev-link">Drift</a> All rigths
+            reserved
+            <p id="date"></p>
+        </span>
+    </footer>
+</body>
+</html>
