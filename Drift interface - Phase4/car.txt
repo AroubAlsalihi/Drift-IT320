@@ -1,0 +1,34 @@
+       <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<article class="category__card">
+                            <h1 class="category__title">' . htmlspecialchars($row['Brand']) . '</h1>
+                            <h3 class="category__subtitle">' . htmlspecialchars($row['Model']) . '</h3>
+                            <img src="home/img/featured' . $row['Car_Id'] . '.png" alt="' . htmlspecialchars($row['Model']) . '" class="category__img">
+                            <h3 class="category__price">$' . number_format($row['Price'], 2) . '</h3>
+                            <a href="NewProductPage.html?id=' . $row['Car_Id'] . '" class="button">View Details</a>
+                          </article>';
+                }
+            } else {
+                echo '<p>No cars available.</p>';
+            }
+            $conn->close(); // Close the database connection
+            ?>
+
+
+
+
+                <?php
+while ($row = $result->fetch_assoc()) {
+    $image_path = 'home/img/featured' . $row['Car_Id'] . '.png';
+    echo '<article class="category__card">
+            <h1 class="category__title">' . htmlspecialchars($row['Brand']) . '</h1>
+            <h3 class="category__subtitle">' . htmlspecialchars($row['Model']) . '</h3>
+            <img src="' . $image_path . '" alt="' . htmlspecialchars($row['Model']) . '" class="category__img">
+            <h3 class="category__price">$' . number_format($row['Price'], 2) . '</h3>
+            <a href="NewProductPage.html?id=' . $row['Car_Id'] . '" class="button">View Details</a>
+          </article>';
+    // Debugging output
+    echo '<p>Image path: ' . $image_path . '</p>';
+}
+?>
