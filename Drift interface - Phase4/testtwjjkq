@@ -1,1 +1,6 @@
+cd "Drift-IT320/Drift interface - Phase4"  
+git pull origin main                       
 
+git rm testwjikq                           
+git commit -m 
+git push origin main
