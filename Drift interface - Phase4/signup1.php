@@ -7,7 +7,6 @@ include 'login.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- CSS and Icon Links -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="SignupStyle.css">
   <link rel="stylesheet" href="home_css/styles.css">
@@ -21,45 +20,32 @@ include 'login.php';
     Drift
   </a>
   <div class="container" id="container">
-    <!-- Sign Up Form -->
     <div class="form-container sign-up">
       <form id="signup-form" method="POST" action="signup.php">
         <h1>Create Account</h1>
         <input type="text" name="name" id="name" placeholder="Name" required>
         <span class="error-message" id="name-error"></span>
-        
         <input type="email" name="email" id="email" placeholder="Email" required>
         <span class="error-message" id="email-error"></span>
-        
-     
         <input type="number" name="age" id="age" placeholder="Age" required>
         <span class="error-message" id="age-error"></span>
-        
-        <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
+        <input type="text" name="phone" id="phone" placeholder="XXXXXXXXX" value="+966" required>
         <span class="error-message" id="phone-error"></span>
-        
         <input type="password" name="password" id="password" placeholder="Password" required>
         <span class="error-message" id="password-error"></span>
-        
         <button type="submit">Sign Up</button>
       </form>
     </div>
-    
-    <!-- Log Form -->
     <div class="form-container sign-in">
       <form id="signin-form" method="POST" action="login.php">
         <h1>Log In</h1>
         <input type="email" name="email" id="signin-email" placeholder="Email" required>
         <span class="error-message" id="signin-email-error"></span>
-        
         <input type="password" name="password" id="signin-password" placeholder="Password" required>
         <span class="error-message" id="signin-password-error"></span>
-        
         <button type="submit">LOG IN</button>
       </form>
     </div>
-    
-    <!-- Toggle Container -->
     <div class="toggle-container">
       <div class="toggle">
         <div class="toggle-panel toggle-left">
@@ -82,8 +68,44 @@ include 'login.php';
     const loginBtn = document.getElementById('login');
     const signupForm = document.getElementById('signup-form');
     const signinForm = document.getElementById('signin-form');
+    const passwordInput = document.getElementById('password');
+    const passwordError = document.getElementById('password-error');
+    const ageInput = document.getElementById('age');
+    const ageError = document.getElementById('age-error');
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
 
-    // Toggle between Sign Up and Sign In forms
+    // Ensure +966 stays at the start
+    phoneInput.addEventListener('input', function() {
+      let value = this.value.trim();
+      if (!value.startsWith('+966')) {
+        this.value = '+966' + value.replace(/^\+966/, '');
+      }
+      
+      const cleanPhone = value.replace('+966', '').replace(/[\s\-\(\)]/g, '');
+      const isValidNumber = /^\d{9}$/.test(cleanPhone);
+
+      if (value.length > 4) {  
+        if (!isValidNumber) {
+          showError('phone-error', 'Enter a valid phone number ');
+        } else {
+          phoneError.textContent = '';
+          phoneError.style.display = 'none';
+        }
+      } else {
+        phoneError.textContent = '';
+        phoneError.style.display = 'none';
+      }
+    });
+
+    // Prevent deleting +966
+    phoneInput.addEventListener('keydown', function(e) {
+      const cursorPosition = this.selectionStart;
+      if (cursorPosition <= 4 && (e.key === 'Backspace' || e.key === 'Delete')) {
+        e.preventDefault();
+      }
+    });
+
     registerBtn.addEventListener('click', () => {
       container.classList.add("active");
     });
@@ -91,14 +113,52 @@ include 'login.php';
       container.classList.remove("active");
     });
 
-    // Sign Up Form Validation
+    // Real-time password validation
+    passwordInput.addEventListener('input', function() {
+      const password = this.value;
+      const isLengthValid = password.length >= 8;
+      const hasUpperCase = /[A-Z]/.test(password);
+      const hasLowerCase = /[a-z]/.test(password);
+      const hasNumber = /\d/.test(password);
+      const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+      const isValid = isLengthValid && hasUpperCase && hasLowerCase && hasNumber && hasSpecial;
+
+      if (password.length > 0) {
+        if (!isValid) {
+          showError('password-error', 'Password must be 8+ characters with uppercase, lowercase, number, and special character');
+        } else {
+          passwordError.textContent = '';
+          passwordError.style.display = 'none';
+        }
+      } else {
+        passwordError.textContent = '';
+        passwordError.style.display = 'none';
+      }
+    });
+
+    // Real-time age validation
+    ageInput.addEventListener('input', function() {
+      const age = this.value;
+      if (age.length > 0) {
+        if (isNaN(age) || parseInt(age) < 18) {
+          showError('age-error', 'You must be 18 or older to register');
+        } else {
+          ageError.textContent = '';
+          ageError.style.display = 'none';
+        }
+      } else {
+        ageError.textContent = '';
+        ageError.style.display = 'none';
+      }
+    });
+
     signupForm.addEventListener('submit', (e) => {
       clearErrors();
 
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const age = document.getElementById('age').value.trim();
-      const phone = document.getElementById('phone').value.trim();
+      let phone = document.getElementById('phone').value.trim();
       const password = document.getElementById('password').value.trim();
 
       let isValid = true;
@@ -111,27 +171,30 @@ include 'login.php';
         showError('email-error', 'Please enter a valid email address.');
         isValid = false;
       }
-      // Validate age field: ensure it's not empty and is a positive number
-      if (!age || isNaN(age) || parseInt(age) <= 0) {
-        showError('age-error', 'Please enter a valid age.');
+      if (!age || isNaN(age) || parseInt(age) < 18) {
+        showError('age-error', 'You must be 18 or older to register');
         isValid = false;
       }
-      if (!phone || !validatePhone(phone)) {
-        showError('phone-error', 'Please enter a valid phone number.');
+      const cleanPhone = phone.replace('+966', '').replace(/[\s\-\(\)]/g, '');
+      const isValidNumber = /^\d{9}$/.test(cleanPhone);
+      if (!phone || !isValidNumber) {
+        showError('phone-error', 'Enter a valid 9-digit Saudi number after +966');
+        isValid = false;
+      } else {
+        // Modify phone number before submission: remove +966, add 0
+        phone = '0' + cleanPhone;
+        phoneInput.value = phone; // Update the input value to be sent to the server
+      }
+      if (!password || !(/[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password) && /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password) && password.length >= 8)) {
+        showError('password-error', 'Password must be 8+ characters with uppercase, lowercase, number, and special character');
         isValid = false;
       }
-      if (!password || password.length < 8) {
-        showError('password-error', 'Password must be at least 8 characters long.');
-        isValid = false;
-      }
-      
+
       if (!isValid) {
         e.preventDefault();
       }
-      // If valid, the form submits naturally to signup.php
     });
 
-    // Sign In Form Validation
     signinForm.addEventListener('submit', (e) => {
       clearErrors();
 
@@ -152,10 +215,8 @@ include 'login.php';
       if (!isValid) {
         e.preventDefault();
       }
-      // If valid, the form submits naturally to login.php
     });
 
-    // Helper Functions
     function showError(elementId, message) {
       const errorElement = document.getElementById(elementId);
       errorElement.textContent = message;
@@ -176,7 +237,7 @@ include 'login.php';
     }
 
     function validatePhone(phone) {
-      const regex = /^\d{10}$/; // Example: 10-digit phone number
+      const regex = /^\d{10}$/;
       return regex.test(phone);
     }
   </script>
